@@ -6,11 +6,14 @@ if(process.env.NODE_ENV !=='production'){
 const express = require("express")
 const app = express()
 const expressLayout = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
 const bookRouter = require('./routes/books')
 
-const bodyParser = require('body-parser')
+
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATEBASE_URL,{
@@ -31,7 +34,7 @@ app.set('layout', 'layouts/layout')
 app.use(expressLayout)
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
-
+app.use(methodOverride('_method'))
 
 app.use('/', indexRouter)
 

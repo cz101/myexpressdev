@@ -1,6 +1,5 @@
 const express = require("express")
 const router = express.Router()
-
 const Author = require('../models/author')
 
 
@@ -64,5 +63,43 @@ router.post('/', async(req,res)=>{
         //res.send(req.body.name)
 
     })
+
+
+    router.get('/:id',(req, res) => {
+        console.log("here i am ")
+        res.send ('Show Author : ' + req.params.id)
+    })
+    
+    router.get('/:id/edit', async (req, res) => {
+        try {
+         // const author = await Author.findById(req.params.id)
+         // res.render('authors/edit', { author: author })
+          res.send ('Edit Author :' + req.params.id)
+        } catch {
+          //res.redirect('/authors')
+        }
+      })
+    
+      router.put('/:id', async (req, res) => {
+        try {
+         // const author = await Author.findById(req.params.id)
+         // res.render('authors/edit', { author: author })
+          res.send ('Update Author : ' + req.params.id)
+        } catch {
+          //res.redirect('/authors')
+        }
+      })  
+
+      router.delete('/:id', async (req, res) => {
+        try {
+         // const author = await Author.findById(req.params.id)
+         // res.render('authors/edit', { author: author })
+          res.send ('Delete Author :' + req.params.id)
+        } catch {
+          //res.redirect('/authors')
+        }
+      })  
+
+
 
 module.exports = router
